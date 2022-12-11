@@ -9,9 +9,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public string MenuSceneName = "Menu";
 
+    private PlayerMovement playerMovement;
+    private ThrowManager throwManager;
+
     private void Awake()
     {
         IsPaused = false;
+        playerMovement = FindObjectOfType<PlayerMovement>();
+        throwManager = FindObjectOfType<ThrowManager>();
     }
 
     // Update is called once per frame
@@ -31,9 +36,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("CONTINUE");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
+        playerMovement.enabled = true;
+        throwManager.enabled = true;
     }
 
     void Pause()
@@ -41,6 +49,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;
+        playerMovement.enabled = false;
+        throwManager.enabled = false;
     }
 
     public void LoadMenu()

@@ -7,32 +7,43 @@ public class ItemCollector : MonoBehaviour
 {
     public AudioSource audioSource;
     public float Volume;
-    public AudioClip coinPickupSound;
+    public AudioClip itemPickupSound;
+    public TMP_Text itemCountText;
 
-    private GameManager gameManager;
-    private int keyCount = 0;
+    private ThrowManager throwManager;
 
-    public TMP_Text keyCountText;
 
     private void Awake()
     {
-        // this is probably risky since we don't know which object will be created first
-        gameManager = FindObjectOfType<GameManager>();
-        keyCountText.text = keyCount + " / " + gameManager.winScore;
+        throwManager = GetComponent<ThrowManager>();
+        itemCountText.text = "kunai: " + throwManager.kunaiCount;
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Key")
+        GameObject throwable = other.gameObject;
+        if (throwable.tag == "Collectible")
         {
-            Destroy(other.gameObject);
-            keyCount++;
-            keyCountText.text = keyCount + " / " + gameManager.winScore;
-            if(keyCount == gameManager.winScore)
-            {
-                gameManager.WinGame();
-            }
+            throwManager.kunaiCount++;
+            itemCountText.text = "kunai: " + throwManager.kunaiCount;
+            Debug.Log("Now have " + throwManager.kunaiCount + " kunai");
 
-            audioSource.PlayOneShot(coinPickupSound, Volume);
+            GameObject throwableParent = throwable.transform.parent.gameObject;
+
+            int throwableIndex = throwManager.kunaiList.IndexOf(throwableParent);
+            throwManager.kunaiList.RemoveAt(throwableIndex);
+            throwManager.cameraFollow.Target = transform;
+            Destroy(throwableParent);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Throwable")
+        {
+            other.gameObject.tag = "Collectible";
+            itemCountText.text = "kunai: " + throwManager.kunaiCount;
+            Debug.Log("Now have " + throwManager.kunaiCount + " kunai");
         }
     }
 }

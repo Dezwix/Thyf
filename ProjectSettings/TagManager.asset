@@ -6,15 +6,17 @@ TagManager:
   tags:
   - Key
   - Ground
+  - Throwable
+  - Collectible
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Throwable
+  - UI Background
   - 
   - 
   - 

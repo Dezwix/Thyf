@@ -9,7 +9,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     [Range(0f, float.MaxValue)]
-    private float Speed = 15;
+    public static float Speed = 15;
 
     [SerializeField]
     [Range(0f, float.MaxValue)]
@@ -17,6 +17,9 @@ public sealed class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private GravityStagesCollection GravitySettings;
+
+    [SerializeField]
+    private bool canJump = false;
 
     private GravityDefinition currentGravity;
     #endregion
@@ -42,7 +45,15 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        CheckJump();
+        if(canJump)
+            CheckJump();
+
+        if(!canJump)
+        {
+            rb.useGravity = false;
+            currentGravity = GravitySettings.JumpGravity;
+            DoGravity();
+        }
     }
 
     private void CheckJump()
@@ -82,7 +93,10 @@ public sealed class PlayerMovement : MonoBehaviour
         onFixedUpdate += CheckForGround;
     }
 
-    private void DoGravity() => rb.AddForce(new Vector3(0f, -currentGravity.Gravity, 0f));
+    private void DoGravity()
+    {
+        rb.AddForce(new Vector3(0f, -currentGravity.Gravity, 0f));
+    }
 
     private void CheckForGround()
     {

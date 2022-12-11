@@ -1,27 +1,34 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Pointer : MonoBehaviour
 {
     #region Public Fields
     public GameObject pointer;
-    public float radius = 5f;
+    public float radius = 2f;
+    public float chargedRadius = 0.5f;
     #endregion
 
     #region Private Fields
-    float full;
-    float multiplier;
-    float xDelta;
-    float yDelta;
+    float dischargedRadius;
     float distance;
-    Vector3 delta;
-    Vector3 localZero;
     Vector3 position;
     Vector3 worldPosition;
-    Plane plane = new Plane(Vector3.back, 0);
+    Plane plane;
     Ray ray;
     #endregion
+
+    public Vector3 Direction { get; private set; }
+
+    private void Awake()
+    {
+        plane = new Plane(Vector3.back, 0);
+        dischargedRadius = radius;
+    }
 
     private void Update()
     {
@@ -30,47 +37,42 @@ public class Pointer : MonoBehaviour
 
         // Get mouse position
         position = Input.mousePosition;
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        ray = Camera.main.ScreenPointToRay(position);
 
         // Get intersection position
         if(plane.Raycast(ray, out distance))
             worldPosition = ray.GetPoint(distance);
 
-        SnapOnCircle();
-        Direction();
-        
+        this.Direction = (worldPosition - transform.position).normalized;
+        pointer.transform.forward = Direction;
+
+        pointer.transform.position = transform.position + Direction * radius;
+
+        float angle = 0f;
+        if (Direction.y < 0)
+            angle = -Vector3.Angle(this.Direction, Vector3.right);
+
+        if(Direction.y >= 0)
+            angle = Vector3.Angle(this.Direction, Vector3.right);
+
+        pointer.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
-    void SnapOnCircle()
+    public IEnumerator Charge()
     {
-        // Full distance between the player and the pointer
-        full = Mathf.Sqrt(Mathf.Pow(transform.position.y - worldPosition.y, 2) + Mathf.Pow(transform.position.x - worldPosition.x, 2));
-
-        // How much radius triangle is smaller than the full triangle
-        multiplier = radius / full;
-
-        // Position of the point on the circle
-        xDelta = (worldPosition.x - transform.position.x) * multiplier;
-        yDelta = (worldPosition.y - transform.position.y) * multiplier;
-
-        // Contains x and y values of the point on the circle
-        delta = new Vector3(xDelta, yDelta, 0);
-
-        // Player's position
-        localZero = transform.position;
-
-        // Assign pointer relatively to player's position and offset
-        pointer.transform.position = delta + localZero;
+        while(radius > chargedRadius)
+        {
+            radius -= 0.01f;
+            yield return new WaitForSeconds(0.001f);
+        }
     }
 
-    void Direction()
+    public IEnumerator Discharge()
     {
-        // I and IV quarters
-        if (xDelta >= 0)
-           pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Asin(yDelta / radius) * Mathf.Rad2Deg - 225f));
-
-        // II and III quarters
-        if(xDelta < 00)
-            pointer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180f - Mathf.Asin(yDelta / radius) * Mathf.Rad2Deg - 225f));
+        while (radius < dischargedRadius)
+        {
+            radius += 0.01f;
+            yield return new WaitForSeconds(0.0001f);
+        }
     }
 }
