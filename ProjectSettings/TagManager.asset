@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Throwable
   - Collectible
+  - Coin
   layers:
   - Default
   - TransparentFX

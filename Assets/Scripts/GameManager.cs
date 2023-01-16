@@ -5,8 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int winScore = 3;
+    public int Level { get; set; }
+    public int Coins { get; set; }
+
     public GameObject completeLevelUI;
+
+    private static GameManager gameManager;
+    private static ItemCollector collector;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        collector = FindObjectOfType<ItemCollector>();
+
+        Coins = PlayerPrefs.GetInt("coins");
+
+        // TODO: Figure out this madness
+        //gameManager = gameObject.AddComponent<GameManager>();
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        Coins = collector.CoinCount;
+        PlayerPrefs.SetInt("coins", Coins);
+        SceneManager.LoadScene(levelName);
+    }
 
     public void EndGame()
     {

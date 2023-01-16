@@ -54,12 +54,25 @@ public class ThrowManager : MonoBehaviour
 
     void CaptureInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+        if(Input.GetMouseButtonDown(0))
         {
             if (pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);
 
-            pointerCoroutine = StartCoroutine(pointer.Charge());
+            if (kunaiCount > 0)
+                pointerCoroutine = StartCoroutine(pointer.Charge());
+
+            onUpdate += Regular;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (pointerCoroutine != null)
+                StopCoroutine(pointerCoroutine);
+            
+            if(kunaiCount > 0)
+                pointerCoroutine = StartCoroutine(pointer.Charge());
+
             chargeTime = Time.time;
             onUpdate += Charged;
         }
@@ -89,8 +102,16 @@ public class ThrowManager : MonoBehaviour
 
     void Regular()
     {
-        Throw(strength);
-        onUpdate -= Regular;
+        if (pointer.radius <= pointer.chargedRadius)
+        {
+            if (pointerCoroutine != null)
+                StopCoroutine(pointerCoroutine);
+
+
+            pointerCoroutine = StartCoroutine(pointer.Discharge());
+            Throw(strength);
+            onUpdate -= Regular;
+        }
     }
 
     void Charged()
@@ -155,7 +176,7 @@ public class ThrowManager : MonoBehaviour
     {
         cameraFollow.Target = transform;
 
-        Debug.Log("Kunai Stack: " + kunaiList.Count);
+        Debug.Log("Kunai List: " + kunaiList.Count);
 
         // Change player's position to kunai
         transform.position = kunai.transform.position;
