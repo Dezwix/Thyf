@@ -1,11 +1,17 @@
+using System;
 using UnityEngine;
 
 public static class SaveDataManager
 {
-    public static int Coins
+    public static void SaveLevel(string levelID, int checkpoint, int coins, bool unlocked)
     {
-        get => PlayerPrefs.GetInt("coins");
+        LevelData level = new LevelData();
+        level.LevelID = levelID;
+        level.CheckPoint = checkpoint;
+        level.Coins = coins;
+        level.Unlocked = unlocked;
 
-        set => PlayerPrefs.SetInt("coins", value);
+        string levelJson = JsonUtility.ToJson(level);
+        PlayerPrefs.SetString(levelID, levelJson);
     }
 }

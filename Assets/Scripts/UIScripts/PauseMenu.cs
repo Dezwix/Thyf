@@ -11,12 +11,14 @@ public class PauseMenu : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private ThrowManager throwManager;
+    private GameManager gameManager;
 
     private void Awake()
     {
         IsPaused = false;
         playerMovement = FindObjectOfType<PlayerMovement>();
         throwManager = FindObjectOfType<ThrowManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -56,7 +58,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(MenuSceneName);
+        gameManager.LoadLevel(MenuSceneName);
+        //SceneManager.LoadScene(MenuSceneName);
     }
 
     public void QuitGame()

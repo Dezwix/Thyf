@@ -25,9 +25,9 @@ public class ItemCollector : MonoBehaviour
 
     private void Start()
     {
-        CoinCount = gameManager.Coins;
+        CoinCount = gameManager.coins;
         itemCountText.text = "kunai:" + throwManager.kunaiCount;
-        coinCountText.text = "x" + CoinCount;
+        coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +51,7 @@ public class ItemCollector : MonoBehaviour
         if (collided.tag == "Coin")
         {
             CoinCount++;
-            coinCountText.text = "x" + CoinCount;
+            coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
             Destroy(collided);
         }
     }

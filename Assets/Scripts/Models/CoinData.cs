@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
-    public class CoinData : MonoBehaviour
+    [Serializable]
+    public class CoinData
     {
         public int ID { get; set; }
         public bool Collected { get; set; }
