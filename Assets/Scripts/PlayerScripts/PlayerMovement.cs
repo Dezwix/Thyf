@@ -41,19 +41,32 @@ public sealed class PlayerMovement : MonoBehaviour
         this.onFixedUpdate = MoveWithAxes;
     }
 
-    void FixedUpdate() => onFixedUpdate();
-
-    private void Update()
+    void FixedUpdate()
     {
-        if(canJump)
+        onFixedUpdate();
+
+        if (canJump)
             CheckJump();
 
-        if(!canJump)
+        if (!canJump)
         {
             rb.useGravity = false;
             currentGravity = GravitySettings.JumpGravity;
             DoGravity();
         }
+    }
+
+    private void Update()
+    {
+        //if(canJump)
+        //    CheckJump();
+
+        //if(!canJump)
+        //{
+        //    rb.useGravity = false;
+        //    currentGravity = GravitySettings.JumpGravity;
+        //    DoGravity();
+        //}
     }
 
     private void CheckJump()

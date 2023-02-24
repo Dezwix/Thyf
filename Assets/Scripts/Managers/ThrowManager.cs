@@ -25,6 +25,8 @@ public class ThrowManager : MonoBehaviour
     public CameraFollow cameraFollow;
 
     public List<GameObject> kunaiList;
+    public AudioClip teleportSound;
+    public AudioClip throwSound;
     #endregion
 
     #region Delegates
@@ -38,13 +40,17 @@ public class ThrowManager : MonoBehaviour
     Rigidbody playerRigidbody;
     Pointer pointer;
     Coroutine pointerCoroutine;
+    AudioSource audioSource;
+    Player player;
     #endregion
 
     private void Awake()
     {
+        player = GetComponent<Player>();
         playerRigidbody = this.GetComponent<Rigidbody>();
         pointer = GetComponent<Pointer>();
         kunaiList = new List<GameObject>();
+        audioSource = GetComponent<AudioSource>();
 
         Physics.IgnoreLayerCollision(3, 6, true);
         this.onUpdate = CaptureInput;
@@ -90,13 +96,13 @@ public class ThrowManager : MonoBehaviour
             Teleport(kunaiLast);
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftControl) && kunaiList.Count > 0 )
-        {
-            cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
-        }
+        //if(Input.GetKeyDown(KeyCode.LeftControl) && kunaiList.Count > 0 )
+        //{
+        //    cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
+        //}
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-            cameraFollow.Target = transform;
+        //if (Input.GetKeyUp(KeyCode.LeftControl))
+        //    cameraFollow.Target = transform;
 
     }
 
@@ -140,6 +146,7 @@ public class ThrowManager : MonoBehaviour
     {
         if (kunaiCount > 0)
         {
+            audioSource.PlayOneShot(throwSound);
             // Decrease kunai count
             kunaiCount--;
             GameObject throwable = Spawn();
@@ -156,6 +163,7 @@ public class ThrowManager : MonoBehaviour
             throwableRigidbody.AddForce(direction * throwStrength);
 
             kunaiList.Add(throwable);
+            cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
         }
 
         // Replace with UI notifier
@@ -174,6 +182,8 @@ public class ThrowManager : MonoBehaviour
 
     void Teleport(GameObject kunai)
     {
+        player.TeleportFX(kunai.transform.position);
+        audioSource.PlayOneShot(teleportSound);
         cameraFollow.Target = transform;
 
         Debug.Log("Kunai List: " + kunaiList.Count);

@@ -256,10 +256,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4929042780895633517, guid: 6be38b2f3083f614a9cd0e058b5d5af1, type: 3}
-      propertyPath: JumpForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929042780895633517, guid: 6be38b2f3083f614a9cd0e058b5d5af1, type: 3}
       propertyPath: jumpForce
       value: 500
       objectReference: {fileID: 0}
@@ -286,10 +282,6 @@ PrefabInstance:
     - target: {fileID: 4929042780895633517, guid: 6be38b2f3083f614a9cd0e058b5d5af1, type: 3}
       propertyPath: penis.jumpGravity.gravity
       value: 4.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4929042780895633517, guid: 6be38b2f3083f614a9cd0e058b5d5af1, type: 3}
-      propertyPath: GravitySettings.jumpGravity.gravity
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4929042780895633519, guid: 6be38b2f3083f614a9cd0e058b5d5af1, type: 3}
       propertyPath: m_LocalPosition.x

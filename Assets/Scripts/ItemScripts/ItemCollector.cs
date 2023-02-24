@@ -50,6 +50,7 @@ public class ItemCollector : MonoBehaviour
 
         if (collided.tag == "Coin")
         {
+            audioSource.PlayOneShot(itemPickupSound);
             CoinCount++;
             coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
             Destroy(collided);
@@ -61,7 +62,7 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.tag == "Throwable")
         {
             other.gameObject.tag = "Collectible";
-            itemCountText.text = "kunai: " + throwManager.kunaiCount;
+            itemCountText.text = "kunai:" + throwManager.kunaiCount;
             Debug.Log("Now have " + throwManager.kunaiCount + " kunai");
         }
     }

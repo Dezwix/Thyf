@@ -11,6 +11,7 @@ public class Pointer : MonoBehaviour
     public GameObject pointer;
     public float radius = 2f;
     public float chargedRadius = 0.5f;
+    public MeshRenderer pointerRenderer;
     #endregion
 
     #region Private Fields
@@ -30,7 +31,7 @@ public class Pointer : MonoBehaviour
         dischargedRadius = radius;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (CursorController.isFrozen)
             return;
@@ -62,8 +63,8 @@ public class Pointer : MonoBehaviour
     {
         while(radius > chargedRadius)
         {
-            radius -= 0.01f;
-            yield return new WaitForSeconds(0.001f);
+            radius -= 0.1f;
+            yield return new WaitForSeconds(0.001f * Time.deltaTime);
         }
     }
 
@@ -71,8 +72,13 @@ public class Pointer : MonoBehaviour
     {
         while (radius < dischargedRadius)
         {
-            radius += 0.01f;
-            yield return new WaitForSeconds(0.0001f);
+            radius += 0.1f;
+            yield return new WaitForSeconds(0.0001f * Time.deltaTime);
         }
+    }
+
+    public void MakeVisible(bool visible)
+    {
+        pointerRenderer.enabled = visible;
     }
 }
