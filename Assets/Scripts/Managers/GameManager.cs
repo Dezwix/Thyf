@@ -49,7 +49,8 @@ public class GameManager : MonoBehaviour
             }
                 
             SaveDataManager.SaveLevel(currentLevel, 0, coins, true);
-            SceneManager.LoadScene(levelName);
+            // SceneManager.LoadScene(levelName);
+            completeLevelUI.SetActive(true);
             currentLevel = levelName;
 
             return;
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
         completeLevelUI.SetActive(true);
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 
 public class ItemCollector : MonoBehaviour
 {
     public AudioSource audioSource;
     public float Volume;
     public AudioClip itemPickupSound;
+    public AudioClip kunaiPickupSound;
+    public GameObject kunaiCollectEffect;
     public TMP_Text itemCountText;
     
     public int CoinCount { get; set; }
@@ -15,12 +18,14 @@ public class ItemCollector : MonoBehaviour
 
     private ThrowManager throwManager;
     private GameManager gameManager;
+    private Player player;
 
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
         throwManager = GetComponent<ThrowManager>();
+        player = GetComponent<Player>();
     }
 
     private void Start()
@@ -33,7 +38,7 @@ public class ItemCollector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject collided = other.gameObject;
-        if (collided.tag == "Collectible")
+        if (collided.tag == "Thrown")
         {
             throwManager.kunaiCount++;
             itemCountText.text = "kunai:" + throwManager.kunaiCount;
@@ -45,6 +50,8 @@ public class ItemCollector : MonoBehaviour
             throwManager.kunaiList.RemoveAt(throwableIndex);
             Debug.Log("Kunai List:" + throwManager.kunaiList.Count);
             throwManager.cameraFollow.Target = transform;
+            player.ToggleMovement(true);
+
             Destroy(throwableParent);
         }
 
@@ -55,13 +62,30 @@ public class ItemCollector : MonoBehaviour
             coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
             Destroy(collided);
         }
+
+        if (collided.tag == "CollectibleKunai")
+        {
+            audioSource.PlayOneShot(kunaiPickupSound);
+            KunaiCollectFX(collided.transform.position);
+            
+            throwManager.kunaiCount++;
+            itemCountText.text = "kunai:" + throwManager.kunaiCount;
+            Destroy(collided.transform.parent.gameObject);
+        }
+    }
+
+    private void KunaiCollectFX(Vector3 position)
+    {
+        kunaiCollectEffect.transform.position = position;
+        kunaiCollectEffect.SetActive(false);
+        kunaiCollectEffect.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Throwable")
         {
-            other.gameObject.tag = "Collectible";
+            other.gameObject.tag = "Thrown";
             itemCountText.text = "kunai:" + throwManager.kunaiCount;
             Debug.Log("Now have " + throwManager.kunaiCount + " kunai");
         }

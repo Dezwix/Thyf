@@ -24,6 +24,9 @@ public class ThrowManager : MonoBehaviour
     [SerializeField]
     public CameraFollow cameraFollow;
 
+    [SerializeField]
+    public bool InputEnabled = true;
+
     public List<GameObject> kunaiList;
     public AudioClip teleportSound;
     public AudioClip throwSound;
@@ -60,7 +63,7 @@ public class ThrowManager : MonoBehaviour
 
     void CaptureInput()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(InputEnabled & Input.GetMouseButtonDown(0))
         {
             if (pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);
@@ -71,7 +74,7 @@ public class ThrowManager : MonoBehaviour
             onUpdate += Regular;
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (InputEnabled & Input.GetMouseButtonDown(1))
         {
             if (pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);
@@ -95,15 +98,6 @@ public class ThrowManager : MonoBehaviour
 
             Teleport(kunaiLast);
         }
-
-        //if(Input.GetKeyDown(KeyCode.LeftControl) && kunaiList.Count > 0 )
-        //{
-        //    cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
-        //}
-
-        //if (Input.GetKeyUp(KeyCode.LeftControl))
-        //    cameraFollow.Target = transform;
-
     }
 
     void Regular()
@@ -164,6 +158,7 @@ public class ThrowManager : MonoBehaviour
 
             kunaiList.Add(throwable);
             cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
+            player.ToggleMovement(false);
         }
 
         // Replace with UI notifier
@@ -186,7 +181,8 @@ public class ThrowManager : MonoBehaviour
         audioSource.PlayOneShot(teleportSound);
         cameraFollow.Target = transform;
 
-        Debug.Log("Kunai List: " + kunaiList.Count);
+        Destroy(kunai);
+        player.ToggleMovement(true);
 
         // Change player's position to kunai
         transform.position = kunai.transform.position;

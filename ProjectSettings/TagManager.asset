@@ -7,10 +7,11 @@ TagManager:
   - Key
   - Ground
   - Throwable
-  - Collectible
   - Coin
   - FxTemporaire
   - Checkpoint
+  - Thrown
+  - CollectibleKunai
   layers:
   - Default
   - TransparentFX

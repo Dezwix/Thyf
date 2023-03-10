@@ -21,6 +21,9 @@ public sealed class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool canJump = false;
 
+    [SerializeField]
+    public bool InputEnabled = true;
+
     private GravityDefinition currentGravity;
     #endregion
 
@@ -54,19 +57,6 @@ public sealed class PlayerMovement : MonoBehaviour
             currentGravity = GravitySettings.JumpGravity;
             DoGravity();
         }
-    }
-
-    private void Update()
-    {
-        //if(canJump)
-        //    CheckJump();
-
-        //if(!canJump)
-        //{
-        //    rb.useGravity = false;
-        //    currentGravity = GravitySettings.JumpGravity;
-        //    DoGravity();
-        //}
     }
 
     private void CheckJump()
@@ -125,6 +115,9 @@ public sealed class PlayerMovement : MonoBehaviour
 
     void MoveWithAxes()
     {
+        // Don't capture input if it's disabled
+        if (!InputEnabled) return;
+
         Vector3 downVel = new Vector3(0f, rb.velocity.y, 0f);
         Vector3 input = new Vector3(Input.GetAxis("Horizontal") * Speed, 0f, 0f);
 

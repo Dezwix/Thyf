@@ -59,6 +59,12 @@ public class Player : MonoBehaviour
         pointer.MakeVisible(true);
     }
 
+    public void ToggleMovement(bool active)
+    {
+        movement.InputEnabled = active;
+        throwManager.InputEnabled = active;
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if(collider.gameObject.tag == "Checkpoint")

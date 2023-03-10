@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     [SerializeField]
-    private string nextLevel = "Level 00";
+    public string nextLevel = "Level 0";
 
     private GameManager gameManager;
 
@@ -19,6 +19,5 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
             gameManager.LoadLevel(nextLevel);
-
     }
 }

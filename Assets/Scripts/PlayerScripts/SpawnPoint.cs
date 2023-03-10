@@ -6,17 +6,21 @@ public class SpawnPoint : MonoBehaviour
 {
     public Material inactiveSpawn;
     public Material activeSpawn;
+    public AudioClip activeClip;
 
+    private bool activePoint = false;
     private MeshRenderer spawnMeshRenderer;
+    private AudioSource spawnAudioSource;
 
     private void Awake()
     {
         spawnMeshRenderer = GetComponent<MeshRenderer>();
+        spawnAudioSource = GetComponent<AudioSource>();
     }
 
-    public void ToggleActive(bool active)
+    public void ToggleActive(bool activePoint)
     {
-        if (active)
+        if (activePoint)
             spawnMeshRenderer.material = activeSpawn;
         else
             spawnMeshRenderer.material = inactiveSpawn;
@@ -27,6 +31,11 @@ public class SpawnPoint : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
             ToggleActive(true);
+
+            if(!activePoint)
+                spawnAudioSource.PlayOneShot(activeClip);
+            
+            activePoint = true;
         }
     }
 }
