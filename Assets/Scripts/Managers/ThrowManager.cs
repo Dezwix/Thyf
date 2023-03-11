@@ -63,18 +63,18 @@ public class ThrowManager : MonoBehaviour
 
     void CaptureInput()
     {
-        if(InputEnabled & Input.GetMouseButtonDown(0))
-        {
-            if (pointerCoroutine != null)
-                StopCoroutine(pointerCoroutine);
+        //if(InputEnabled & Input.GetMouseButtonDown(0))
+        //{
+        //    if (pointerCoroutine != null)
+        //        StopCoroutine(pointerCoroutine);
 
-            if (kunaiCount > 0)
-                pointerCoroutine = StartCoroutine(pointer.Charge());
+        //    if (kunaiCount > 0)
+        //        pointerCoroutine = StartCoroutine(pointer.Charge());
 
-            onUpdate += Regular;
-        }
+        //    onUpdate += Regular;
+        //}
 
-        if (InputEnabled & Input.GetMouseButtonDown(1))
+        if ( InputEnabled & (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) )
         {
             if (pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);

@@ -61,6 +61,7 @@ public class ItemCollector : MonoBehaviour
             CoinCount++;
             coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
             Destroy(collided);
+            gameManager.checkFinish(CoinCount);
         }
 
         if (collided.tag == "CollectibleKunai")

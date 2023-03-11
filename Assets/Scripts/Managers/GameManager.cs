@@ -13,14 +13,19 @@ public class GameManager : MonoBehaviour
     public GameObject completeLevelUI;
     public TMP_Text levelCount;
 
+    [System.NonSerialized]
+    public bool finishActive = false;
+
     private static string currentLevel = "default";
     private static ItemCollector collector;
     private LevelData level;
+    private Finish finishObject;
 
     private void Awake()
     {
         //DontDestroyOnLoad(this);
         collector = FindObjectOfType<ItemCollector>();
+        finishObject = FindObjectOfType<Finish>();
 
         if(currentLevel != "MenuPages" && currentLevel != "default")
         {
@@ -60,6 +65,16 @@ public class GameManager : MonoBehaviour
         SaveDataManager.SaveLevel(currentLevel, 0, coins, true);
         SceneManager.LoadScene(levelName);
         currentLevel = levelName;
+    }
+
+    public void checkFinish(int coinCount)
+    {
+        if (coinCount >= coinsTotal)
+            finishActive = true;
+        else
+            finishActive = false;
+
+        finishObject.ToggleFinish(finishActive);
     }
 
     public void EndGame()
