@@ -1804,29 +1804,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
---- !u!1 &1173548592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7671817164275549559, guid: 36635519e29931a41849cf9aa74f80df, type: 3}
-  m_PrefabInstance: {fileID: 7671817163288701767}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1173548597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173548592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93dce6a426bb63469943addcfdadb58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextLevel: Level 2
-  activeMaterial: {fileID: 0}
-  inactiveMaterial: {fileID: 0}
-  activateSound: {fileID: 0}
-  accessDenied: {fileID: 0}
-  portalFx: {fileID: 0}
 --- !u!1001 &1190894462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2507,7 +2484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378647631873318129, guid: 36635519e29931a41849cf9aa74f80df, type: 3}
       propertyPath: nextLevel
-      value: Level 2
+      value: Level 9
       objectReference: {fileID: 0}
     - target: {fileID: 4770601207907353480, guid: 36635519e29931a41849cf9aa74f80df, type: 3}
       propertyPath: playOnAwake

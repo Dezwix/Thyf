@@ -29,6 +29,7 @@ public class ThrowManager : MonoBehaviour
 
     public List<GameObject> kunaiList;
     public AudioClip teleportSound;
+    public AudioClip lastTeleportSound;
     public AudioClip throwSound;
     #endregion
 
@@ -178,7 +179,12 @@ public class ThrowManager : MonoBehaviour
     void Teleport(GameObject kunai)
     {
         player.TeleportFX(kunai.transform.position);
-        audioSource.PlayOneShot(teleportSound);
+
+        if (kunaiCount == 0)
+            audioSource.PlayOneShot(lastTeleportSound);
+        else 
+            audioSource.PlayOneShot(teleportSound);
+
         cameraFollow.Target = transform;
 
         Destroy(kunai);
