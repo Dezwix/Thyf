@@ -64,18 +64,15 @@ public class ThrowManager : MonoBehaviour
 
     void CaptureInput()
     {
-        //if(InputEnabled & Input.GetMouseButtonDown(0))
-        //{
-        //    if (pointerCoroutine != null)
-        //        StopCoroutine(pointerCoroutine);
+        if(InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if(pointerCoroutine != null)
+                StopCoroutine(pointerCoroutine);
 
-        //    if (kunaiCount > 0)
-        //        pointerCoroutine = StartCoroutine(pointer.Charge());
+            pointerCoroutine = StartCoroutine(pointer.Discharge());
+        }
 
-        //    onUpdate += Regular;
-        //}
-
-        if ( InputEnabled & (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) )
+        if (InputEnabled & Input.GetMouseButtonDown(0))
         {
             if (pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);
@@ -117,7 +114,15 @@ public class ThrowManager : MonoBehaviour
 
     void Charged()
     {
-        if (Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
+        // Cancel with RMB
+        if(Input.GetKeyDown(KeyCode.Mouse1) ||  (Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKeyDown(KeyCode.Mouse1)) )
+        {
+            onUpdate -= Charged;
+            pointerCoroutine = StartCoroutine(pointer.Discharge());
+            return;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if(pointerCoroutine != null)
                 StopCoroutine(pointerCoroutine);
