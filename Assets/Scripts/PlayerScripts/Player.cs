@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         audioSource.PlayOneShot(deathClip);
         deathEffect.SetActive(false);
         deathEffect.SetActive(true);
+        throwManager.ResetCharge();
 
         StartCoroutine(DelayedRespawn(secondsToRespawn));
     }

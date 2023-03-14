@@ -66,10 +66,7 @@ public class ThrowManager : MonoBehaviour
     {
         if(InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if(pointerCoroutine != null)
-                StopCoroutine(pointerCoroutine);
-
-            pointerCoroutine = StartCoroutine(pointer.Discharge());
+            ResetCharge();
         }
 
         if (InputEnabled & Input.GetMouseButtonDown(0))
@@ -200,5 +197,14 @@ public class ThrowManager : MonoBehaviour
 
         // Reset player's velocity on teleport
         playerRigidbody.velocity = Vector3.zero;
+    }
+
+    public void ResetCharge()
+    {
+        if (pointerCoroutine != null)
+            StopCoroutine(pointerCoroutine);
+
+        pointerCoroutine = StartCoroutine(pointer.Discharge());
+        onUpdate -= Charged;
     }
 }
