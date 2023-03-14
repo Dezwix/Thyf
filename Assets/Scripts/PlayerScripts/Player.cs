@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         deathEffect.SetActive(false);
         deathEffect.SetActive(true);
         throwManager.ResetCharge();
+        throwManager.KunaiDestroy();
 
         StartCoroutine(DelayedRespawn(secondsToRespawn));
     }

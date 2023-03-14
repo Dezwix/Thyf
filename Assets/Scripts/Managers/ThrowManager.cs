@@ -207,4 +207,15 @@ public class ThrowManager : MonoBehaviour
         pointerCoroutine = StartCoroutine(pointer.Discharge());
         onUpdate -= Charged;
     }
+
+    public void KunaiDestroy()
+    {
+        if (cameraFollow.Target.gameObject.tag == "Player")
+            return;
+
+        GameObject kunai = cameraFollow.Target.gameObject;
+        cameraFollow.Target = transform;
+        player.ToggleMovement(true);
+        Destroy(kunai);
+    }
 }
