@@ -6,5 +6,7 @@ Use your kunais to eliminate your targets and get around traps that any ordinary
 ## BTS
 If you're here and the game is not (yet), feel free to checkout game's code inside the [`Assets/Scripts`](https://github.com/Dezwix/thyf/tree/main/Assets/Scripts) folder.
 
-### Release Date: February 4, 2023
+### Unity Version: 2021.3.12f1
+
+### Release Date: March 14, 2023
 This project is still under construction. Star this repository and follow me on [itch.io](http://dezwix.itch.io/) to be the first one to play!
