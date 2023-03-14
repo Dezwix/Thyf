@@ -37,6 +37,7 @@ public class ItemCollector : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameObject collided = other.gameObject;
+        Debug.Log("Collided with: " + collided.tag);
         if (collided.tag == "Thrown")
         {
             throwManager.kunaiCount++;
@@ -56,21 +57,12 @@ public class ItemCollector : MonoBehaviour
 
         if (collided.tag == "Coin")
         {
-            audioSource.PlayOneShot(itemPickupSound);
-            CoinCount++;
-            coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
-            Destroy(collided);
-            gameManager.checkFinish(CoinCount);
+            CollectCoin(collided);
         }
 
         if (collided.tag == "CollectibleKunai")
         {
-            audioSource.PlayOneShot(kunaiPickupSound);
-            KunaiCollectFX(collided.transform.position);
-            
-            throwManager.kunaiCount++;
-            itemCountText.text = "kunai:" + throwManager.kunaiCount;
-            Destroy(collided.transform.parent.gameObject);
+            CollectKunai(collided.gameObject);
         }
     }
 
@@ -89,5 +81,29 @@ public class ItemCollector : MonoBehaviour
             itemCountText.text = "kunai:" + throwManager.kunaiCount;
             Debug.Log("Now have " + throwManager.kunaiCount + " kunai");
         }
+    }
+
+    public void UpdateKunaiUI()
+    {
+        itemCountText.text = "kunai:" + throwManager.kunaiCount;
+    }
+
+    public void CollectCoin(GameObject collided)
+    {
+        audioSource.PlayOneShot(itemPickupSound);
+        CoinCount++;
+        coinCountText.text = "x" + CoinCount + "/" + gameManager.coinsTotal;
+        Destroy(collided);
+        gameManager.checkFinish(CoinCount);
+    }
+
+    public void CollectKunai(GameObject kunai)
+    {
+        audioSource.PlayOneShot(kunaiPickupSound);
+        KunaiCollectFX(kunai.transform.position);
+
+        throwManager.kunaiCount++;
+        itemCountText.text = "kunai:" + throwManager.kunaiCount;
+        Destroy(kunai.transform.gameObject);
     }
 }

@@ -46,6 +46,7 @@ public class ThrowManager : MonoBehaviour
     Coroutine pointerCoroutine;
     AudioSource audioSource;
     Player player;
+    ItemCollector collector;
     #endregion
 
     private void Awake()
@@ -55,8 +56,9 @@ public class ThrowManager : MonoBehaviour
         pointer = GetComponent<Pointer>();
         kunaiList = new List<GameObject>();
         audioSource = GetComponent<AudioSource>();
+        collector = GetComponent<ItemCollector>();
 
-        Physics.IgnoreLayerCollision(3, 6, true);
+        // Physics.IgnoreLayerCollision(3, 6, true);
         this.onUpdate = CaptureInput;
     }   
 
@@ -162,6 +164,8 @@ public class ThrowManager : MonoBehaviour
             kunaiList.Add(throwable);
             cameraFollow.Target = kunaiList[kunaiList.Count - 1].transform;
             player.ToggleMovement(false);
+
+            collector.UpdateKunaiUI();
         }
 
         // Replace with UI notifier

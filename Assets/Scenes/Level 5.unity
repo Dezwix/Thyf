@@ -3102,7 +3102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8864166048002678339, guid: d8cb4af9ed57a3644b950abf9f280ded, type: 3}
       propertyPath: coinsTotal
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8864166048002678339, guid: d8cb4af9ed57a3644b950abf9f280ded, type: 3}
       propertyPath: levelCount

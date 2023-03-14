@@ -6,12 +6,14 @@ public class Kunai : MonoBehaviour
 {
     public bool teleportable = true;
 
-    bool touchedAnything = false;
-    Rigidbody rigidbody;
+    private bool touchedAnything = false;
+    private Rigidbody rigidbody;
+    private ItemCollector collector;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        collector = FindObjectOfType<ItemCollector>();
     }
 
     void Update()
@@ -22,13 +24,20 @@ public class Kunai : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if(collision.gameObject.tag == "Ground")
-            touchedAnything = true;
+        touchedAnything = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        //if (collision.gameObject.tag == "Ground")
-            touchedAnything = false;
+        touchedAnything = false;
+    }
+
+    private void OnTriggerEnter(Collider collider)
+     {
+        if (collider.gameObject.tag == "Coin")
+            collector.CollectCoin(collider.gameObject);
+
+        if (collider.gameObject.tag == "CollectibleKunai")
+            collector.CollectKunai(collider.gameObject);
     }
 }
