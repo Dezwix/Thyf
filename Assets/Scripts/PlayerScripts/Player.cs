@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private MeshRenderer meshRender;
     private ThrowManager throwManager;
     private Pointer pointer;
+    private BoxCollider playerCollider;
 
     [System.NonSerialized] public AudioSource audioSource;
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         meshRender = GetComponent<MeshRenderer>();
         throwManager= GetComponent<ThrowManager>();
         pointer = GetComponent<Pointer>();
+        playerCollider = GetComponent<BoxCollider>();
     }
 
     public void TeleportFX(Vector3 position)
@@ -51,12 +53,14 @@ public class Player : MonoBehaviour
         movement.enabled = false;
         meshRender.enabled = false;
         throwManager.enabled = false;
+        playerCollider.enabled = false;
         pointer.MakeVisible(false);
         yield return new WaitForSeconds(seconds);
         transform.position = SpawnPoint.transform.position;
         movement.enabled = true;
         meshRender.enabled = true;
         throwManager.enabled = true;
+        playerCollider.enabled = true;
         pointer.MakeVisible(true);
     }
 
