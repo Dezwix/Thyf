@@ -54,8 +54,14 @@ public class GameManager : MonoBehaviour
             }
                 
             SaveDataManager.SaveLevel(currentLevel, 0, coins, true);
-            // SceneManager.LoadScene(levelName);
-            completeLevelUI.SetActive(true);
+            
+            if(levelName != "MenuPages")
+                // Use completeLevelUI's code to load next level
+                completeLevelUI.SetActive(true);
+            else
+                // Use plain LoadScene to load MenuPages
+                SceneManager.LoadScene(levelName);
+
             currentLevel = levelName;
 
             return;
