@@ -13,6 +13,8 @@ TagManager:
   - Thrown
   - CollectibleKunai
   - CollectibleChild
+  - Sticky
+  - madeBy
   layers:
   - Default
   - TransparentFX

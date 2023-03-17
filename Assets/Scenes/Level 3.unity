@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: StickyPlatform (2)
@@ -2217,6 +2221,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: StickyPlatform (3)
@@ -2660,6 +2668,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: StickyPlatform (4)
@@ -3217,6 +3229,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: StickyPlatform (1)

@@ -799,9 +799,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: Platform (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     - target: {fileID: 2743432603155974462, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1567,9 +1575,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: Platform (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     - target: {fileID: 2743432603155974462, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3342,9 +3358,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: Platform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     - target: {fileID: 2743432603155974462, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3863,9 +3887,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: Platform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     - target: {fileID: 2743432603155974462, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4429,9 +4461,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974401, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 03cfef861b2b08448962e5e7e9e23a03, type: 2}
     - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Name
       value: Platform (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743432603155974403, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
+      propertyPath: m_TagString
+      value: Sticky
       objectReference: {fileID: 0}
     - target: {fileID: 2743432603155974462, guid: 1f7e93acdef8e3142b2846ad85e2483b, type: 3}
       propertyPath: m_Materials.Array.data[0]
