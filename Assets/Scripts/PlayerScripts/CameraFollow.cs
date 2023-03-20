@@ -32,7 +32,6 @@ public class CameraFollow : MonoBehaviour
     private Vector3 desiredPosition;
     private bool anchored = false;
     private float startSize;
-    private Vector3 startPosition;
     private float smoothSizeStep;
     private float smoothPositionStep;
 
@@ -41,12 +40,12 @@ public class CameraFollow : MonoBehaviour
         mapAnchor = GameObject.FindGameObjectWithTag("MapAnchor");
         cameraComponent = GetComponent<Camera>();
         startSize = cameraComponent.orthographicSize;
-        startPosition = transform.position;
     }
 
     private void Update()
     {
         smoothSizeStep += smoothSizeSpeed * Time.deltaTime;
+        smoothPositionStep += smoothPositionSpeed * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -56,7 +55,6 @@ public class CameraFollow : MonoBehaviour
             
             // Reset smooth step and size when swap
             smoothPositionStep = 0f;
-            startPosition = transform.position;
 
             if (anchored)
                 anchored = false;
@@ -64,45 +62,18 @@ public class CameraFollow : MonoBehaviour
                 anchored = true;
         }
 
-        if (smoothSizeStep > 1f)
-            return;
-        if (smoothPositionStep > 1f)
-            return;
-
         if (!anchored)
         {
             desiredPosition = Target.position + offset;
-
+            transform.position = Vector3.Slerp(transform.position, desiredPosition, smoothPositionStep);
             cameraComponent.orthographicSize = Mathf.SmoothStep(startSize, playerSize, smoothSizeStep);
         }
 
         if (anchored)
         {
             desiredPosition = mapAnchor.transform.position + offset;
+            transform.position = Vector3.Slerp(transform.position, desiredPosition, smoothPositionStep);
             cameraComponent.orthographicSize = Mathf.SmoothStep(startSize, mapSize, smoothSizeStep);
         }
-
-       
-    }
-
-    void FixedUpdate()
-    {
-        smoothPositionStep += smoothPositionSpeed * Time.fixedDeltaTime;
-
-        if (anchored)
-            AnchorMove();
-        else
-        {
-            desiredPosition = Target.position + offset;
-            transform.position = Vector3.Slerp(transform.position, desiredPosition, smoothPositionStep);
-        }
-    }
-
-    void AnchorMove()
-    {
-        if (smoothPositionStep > 1f)
-            return;
-
-        transform.position = Vector3.Slerp(startPosition, desiredPosition, smoothPositionStep);
     }
 }
