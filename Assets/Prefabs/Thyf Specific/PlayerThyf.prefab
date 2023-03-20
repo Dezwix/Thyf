@@ -117,6 +117,14 @@ PrefabInstance:
       propertyPath: offset.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1452303162109998624, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
+      propertyPath: smoothSizeSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452303162109998624, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
+      propertyPath: smoothPositionSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1452303162109998625, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4
@@ -156,6 +164,10 @@ PrefabInstance:
     - target: {fileID: 1452303162109998630, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.16037738
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452303162329934286, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1452303162864917794, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
       propertyPath: m_RootOrder
@@ -301,7 +313,8 @@ PrefabInstance:
       propertyPath: kunaiCollectEffect
       value: 
       objectReference: {fileID: 2142726976431389752}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1452303162329934281, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
 --- !u!82 &1946074428924995494 stripped
 AudioSource:

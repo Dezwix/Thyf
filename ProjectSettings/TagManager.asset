@@ -15,6 +15,7 @@ TagManager:
   - CollectibleChild
   - Sticky
   - madeBy
+  - MapAnchor
   layers:
   - Default
   - TransparentFX

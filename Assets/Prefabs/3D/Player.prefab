@@ -57,14 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4929042779950196295}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 9, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -10.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4929042780489372329}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_Father: {fileID: 4929042780895633519}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &4929042779950196292
 Light:
   m_ObjectHideFlags: 0
@@ -142,6 +142,8 @@ MonoBehaviour:
   target: {fileID: 4929042780895633519}
   smoothSpeed: 0.875
   offset: {x: 0, y: 8.5, z: 0}
+  mapSize: 30
+  playerSize: 12
 --- !u!1 &4929042780237773231
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +244,8 @@ MonoBehaviour:
   target: {fileID: 4929042780895633519}
   smoothSpeed: 0.125
   offset: {x: 0, y: 15, z: 0}
+  mapSize: 30
+  playerSize: 12
 --- !u!1 &4929042780489372328
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +278,6 @@ Transform:
   - {fileID: 8596292697975305080}
   - {fileID: 7656527868668724047}
   - {fileID: 4929042780895633519}
-  - {fileID: 4929042779950196293}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -317,6 +320,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7489114157828579740}
+  - {fileID: 4929042779950196293}
   m_Father: {fileID: 4929042780489372329}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,7 +406,6 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   deathEffect: {fileID: 0}
   teleportEffect: {fileID: 7656527868668724080}
-  kunaiCollectEffect: {fileID: 0}
   secondsToRespawn: 3
 --- !u!114 &4929042780895633517
 MonoBehaviour:
@@ -445,6 +448,7 @@ MonoBehaviour:
   Volume: 0.75
   itemPickupSound: {fileID: 0}
   kunaiPickupSound: {fileID: 0}
+  kunaiCollectEffect: {fileID: 0}
   itemCountText: {fileID: 0}
   coinCountText: {fileID: 0}
 --- !u!114 &7939652984221547065
@@ -484,6 +488,7 @@ MonoBehaviour:
   InputEnabled: 1
   kunaiList: []
   teleportSound: {fileID: 0}
+  lastTeleportSound: {fileID: 0}
   throwSound: {fileID: 0}
 --- !u!65 &6025178748378810016
 BoxCollider:
