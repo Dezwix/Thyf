@@ -49,6 +49,8 @@ public class ThrowManager : MonoBehaviour
     AudioSource audioSource;
     Player player;
     ItemCollector collector;
+    bool teleportEnabled = true;
+    GameObject currentKunai;
     #endregion
 
     private void Awake()
@@ -71,8 +73,11 @@ public class ThrowManager : MonoBehaviour
         if(InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
             ResetCharge();
 
-        if (!InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
-            StartCoroutine(CancelTeleport(kunaiList.Last()));
+        if (!InputEnabled & teleportEnabled & Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            teleportEnabled = false;
+            StartCoroutine(CancelTeleport(currentKunai));
+        }
 
         if (InputEnabled & Input.GetMouseButtonDown(0))
         {
@@ -86,7 +91,7 @@ public class ThrowManager : MonoBehaviour
             onUpdate += Charged;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(teleportEnabled & Input.GetKeyDown(KeyCode.Space))
         {
             if (kunaiList.Count == 0)
                 return;
@@ -152,6 +157,7 @@ public class ThrowManager : MonoBehaviour
             // Decrease kunai count
             kunaiCount--;
             GameObject throwable = Spawn();
+            currentKunai = throwable;
 
             // Get throwable's Rigidbody
             Rigidbody throwableRigidbody = throwable.GetComponent<Rigidbody>();
@@ -188,6 +194,7 @@ public class ThrowManager : MonoBehaviour
     void Teleport(GameObject kunai)
     {
         player.TeleportFX(kunai.transform.position);
+        currentKunai = null;
 
         if (kunaiCount == 0)
             audioSource.PlayOneShot(lastTeleportSound);
@@ -209,14 +216,17 @@ public class ThrowManager : MonoBehaviour
     IEnumerator CancelTeleport(GameObject kunai)
     {
         player.TeleportFX(kunai.transform.position);
+        currentKunai = null;
 
         audioSource.PlayOneShot(cancelTeleportSound);
         kunai.SetActive(false);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
+
         StartCoroutine(cameraFollow.ChangeTargets(transform));
-        Destroy(kunai);
         player.ToggleMovement(true);
+        teleportEnabled = true;
+        Destroy(kunai);
     }
 
     public void ResetCharge()
@@ -234,7 +244,7 @@ public class ThrowManager : MonoBehaviour
             return;
 
         GameObject kunai = cameraFollow.Target.gameObject;
-        cameraFollow.Target = transform; // TODO: Add slow transition and a timer for kunai fx to be over before swap
+        cameraFollow.Target = transform;
         player.ToggleMovement(true);
         Destroy(kunai);
     }

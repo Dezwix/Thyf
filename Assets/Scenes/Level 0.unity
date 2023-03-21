@@ -4956,6 +4956,14 @@ PrefabInstance:
       propertyPath: chargeSpeed
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 4677089995984152009, guid: 7fe31ed306c8fb44d904e449482d6293, type: 3}
+      propertyPath: clearBehavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677089995984152052, guid: 7fe31ed306c8fb44d904e449482d6293, type: 3}
+      propertyPath: cullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7984413054344824557, guid: 7fe31ed306c8fb44d904e449482d6293, type: 3}
       propertyPath: coinCountText
       value: 
