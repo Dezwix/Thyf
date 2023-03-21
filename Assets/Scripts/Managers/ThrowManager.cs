@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class ThrowManager : MonoBehaviour
     public AudioClip teleportSound;
     public AudioClip lastTeleportSound;
     public AudioClip throwSound;
+    public AudioClip cancelTeleportSound;
     #endregion
 
     #region Delegates
@@ -67,9 +69,10 @@ public class ThrowManager : MonoBehaviour
     void CaptureInput()
     {
         if(InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
-        {
             ResetCharge();
-        }
+
+        if (!InputEnabled & Input.GetKeyDown(KeyCode.Mouse1))
+            StartCoroutine(CancelTeleport(kunaiList.Last()));
 
         if (InputEnabled & Input.GetMouseButtonDown(0))
         {
@@ -203,6 +206,19 @@ public class ThrowManager : MonoBehaviour
         playerRigidbody.velocity = Vector3.zero;
     }
 
+    IEnumerator CancelTeleport(GameObject kunai)
+    {
+        player.TeleportFX(kunai.transform.position);
+
+        audioSource.PlayOneShot(cancelTeleportSound);
+        kunai.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(cameraFollow.ChangeTargets(transform));
+        Destroy(kunai);
+        player.ToggleMovement(true);
+    }
+
     public void ResetCharge()
     {
         if (pointerCoroutine != null)
@@ -218,7 +234,7 @@ public class ThrowManager : MonoBehaviour
             return;
 
         GameObject kunai = cameraFollow.Target.gameObject;
-        cameraFollow.Target = transform;
+        cameraFollow.Target = transform; // TODO: Add slow transition and a timer for kunai fx to be over before swap
         player.ToggleMovement(true);
         Destroy(kunai);
     }

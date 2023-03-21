@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: lastTeleportSound
       value: 
       objectReference: {fileID: 8300000, guid: 14faa24270e428c458a9acfa1281d212, type: 3}
+    - target: {fileID: 7244775600416299875, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
+      propertyPath: cancelTeleportSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 14faa24270e428c458a9acfa1281d212, type: 3}
     - target: {fileID: 7446057137004188982, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
       propertyPath: m_IsActive
       value: 0

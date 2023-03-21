@@ -76,4 +76,18 @@ public class CameraFollow : MonoBehaviour
             cameraComponent.orthographicSize = Mathf.SmoothStep(startSize, mapSize, smoothSizeStep);
         }
     }
+
+    public IEnumerator ChangeTargets(Transform newTarget)
+    {
+        smoothPositionStep = 0f;
+        Target = newTarget;
+        desiredPosition = Target.position + offset;
+
+        while(transform.position != desiredPosition)
+        {
+            smoothPositionStep += smoothPositionSpeed * Time.deltaTime;
+            transform.position = Vector3.Slerp(transform.position, desiredPosition, smoothPositionStep);
+            yield return new WaitForSeconds(smoothPositionStep);
+        }
+    }
 }

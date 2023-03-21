@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject completeLevelUI;
     public TMP_Text levelCount;
+    public AudioClip clickSound;
 
     [System.NonSerialized]
     public bool finishActive = false;
@@ -20,14 +21,16 @@ public class GameManager : MonoBehaviour
     private static ItemCollector collector;
     private LevelData level;
     private Finish finishObject;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         //DontDestroyOnLoad(this);
         collector = FindObjectOfType<ItemCollector>();
         finishObject = FindObjectOfType<Finish>();
+        audioSource = GetComponent<AudioSource>();  
 
-        if(currentLevel != "MenuPages" && currentLevel != "default")
+        if (currentLevel != "MenuPages" && currentLevel != "default")
         {
             // Debug.Log("This is not menu");
             levelCount.text = currentLevel;
@@ -96,5 +99,10 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ButtonClick()
+    {
+        audioSource.PlayOneShot(clickSound);
     }
 }
