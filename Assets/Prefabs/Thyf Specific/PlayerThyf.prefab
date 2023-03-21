@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4179788800695225543, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
+      propertyPath: clearBehavior
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4499012540711155122, guid: 61ebb06fd6161bf4a83f63aded5581e1, type: 3}
       propertyPath: pointerRenderer
       value: 
