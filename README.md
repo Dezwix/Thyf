@@ -1,12 +1,13 @@
 # Thyf
-Thyf, originating from thief, is a 2D platformer, where you can become a sneaky square with deadly kunai that can get you anywhere it lands. 
-That is, you can teleport to the position of your kunai at any given point of time. 
-Use your kunais to eliminate your targets and get around traps that any ordinary square wouldn't be able to!
-
-## BTS
-If you're here and the game is not (yet), feel free to checkout game's code inside the [`Assets/Scripts`](https://github.com/Dezwix/thyf/tree/main/Assets/Scripts) folder.
+Thyf — originating from 'thief', is a simple concept platformer, where jumping is substituted with a teleportation technique. 
 
 ### Unity Version: 2021.3.12f1
 
-### Release Date: March 14, 2023
-This project is still under construction. Star this repository and follow me on [itch.io](http://dezwix.itch.io/) to be the first one to play!
+### Prefabs for levels
+All objects and prefabs necessary for level creation are locatedunder `Assets/Prefabs/` directory. Note that floors are supposed to not have any material assigned, whereas walls should have a Slippery material applied to avoid unintented sticking to walls. 
+
+### v1.0 Release Date: March 14, 2023
+### v1.2 Release Date: March 20, 2023
+
+### Itch.io page
+https://dezwix.itch.io/thyf
